@@ -1,0 +1,31 @@
+<div class="container">
+    <input type="text" [(ngModel)]="inputValue" placeholder="Nowe zadanie" (keydown)=onKeyDownEvent($event)>
+    <button type="button" class="btn btn-primary" (click)="handleClick()">Dodaj</button>
+    <button type="button" class="btn btn-primary" (click)="DeleteAll()">Usun Wszystko</button>
+    <ul class="list-group">
+        <li class="list-group-item" *ngFor="let task of list">
+            <div *ngIf="task.isCompleted; else notCompleted">
+                <s>{{ task.name }}</s>
+            </div>
+            <ng-template #notCompleted>
+                <a>{{ task.name }}</a><span (click)=remove(task)>
+
+                    &nbsp;&nbsp;
+                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-x" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M4 0h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H4z"/>
+                        <path fill-rule="evenodd" d="M6.146 6.146a.5.5 0 0 1 .708 0L8 7.293l1.146-1.147a.5.5 0 1 1 .708.708L8.707 8l1.147 1.146a.5.5 0 0 1-.708.708L8 8.707 6.854 9.854a.5.5 0 0 1-.708-.708L7.293 8 6.146 6.854a.5.5 0 0 1 0-.708z"/>
+                      </svg>
+                      &nbsp;&nbsp;
+                </span><span (click)=markAsCompleted(task)>
+                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-calendar-check" fill="currentColor"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                            d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
+                        <path fill-rule="evenodd"
+                            d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z" />
+                    </svg>
+                </span>
+            </ng-template>
+        </li>
+    </ul>
+</div>
