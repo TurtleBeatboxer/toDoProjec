@@ -19,19 +19,22 @@ export class ListComponent implements OnInit {
   ]
 
   public inputValue: string;
-
+ 
   constructor() { }
 
   ngOnInit(): void {
+    this.inputValue = "";
   }
 
   public handleClick(): void {
+    if(this.inputValue != "") {
     this.list.push({
       name: this.inputValue,
       isCompleted: false
     })
-    this.inputValue = "";
+    
   }
+}
 
   public remove(task: Task){
     const index  = this.list.indexOf(task);
@@ -48,9 +51,14 @@ export class ListComponent implements OnInit {
       this.handleClick();
   }
   public DeleteAll(){
-    for (let i = 0; i <= this.list.length; i++) {
-      this.list.splice(i, 1);
+      this.list.splice(0, this.list.length);
+    }
+  
+  public DeleteAllCompleted(){
+    for (let task of this.list){
+      if (task.isCompleted === true){
+        this.remove(task);
+      }
     }
   }
-
 }
