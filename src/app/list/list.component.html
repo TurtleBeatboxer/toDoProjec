@@ -1,7 +1,8 @@
-<div class="container">
+<div class="container"> <p> projekt to do app</p>
     <input type="text" [(ngModel)]="inputValue" placeholder="Nowe zadanie" (keydown)=onKeyDownEvent($event)>
     <button type="button" class="btn btn-primary" (click)="handleClick()">Dodaj</button>
     <button type="button" class="btn btn-primary" (click)="DeleteAll()">Usun Wszystko</button>
+    <button type="button" class="btn btn-primary" (click)="DeleteAllCompleted()">Usun Wszystko Skonczone</button>
     <ul class="list-group">
         <li class="list-group-item" *ngFor="let task of list">
             <div *ngIf="task.isCompleted; else notCompleted">
